@@ -15,7 +15,7 @@ namespace LoLApiChallenge.Crawler
     {
         //A Puma sumId: 21520492
         private static readonly string BaseUrl = System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
-        private static readonly string ApiKey = System.Configuration.ConfigurationManager.AppSettings["APIKey"];
+        private static readonly string ApiKey = Environment.GetEnvironmentVariable("API_KEY");
         private static readonly string StorageLocation = System.Configuration.ConfigurationManager.AppSettings["StorageLocation"];
         static void Main(string[] args)
         {
