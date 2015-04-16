@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LoLApiChallenge.Models;
 
 namespace LoLApiChallenge.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new UrfDataModel{FullData = Data};
+            return View(model);
         }
 
         public ActionResult Map()
