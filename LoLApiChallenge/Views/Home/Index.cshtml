@@ -1,31 +1,142 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@Html.Partial("Partials/Map")
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section scripts {
+    <script>
+        var heatmapInstance = h337.create({
+            container: document.querySelector('.heatmap'),
+            gradient: {
+                '.30': '#180933',
+                '.31': '#1f113b',
+                '.32': '#130031',
+                '.33': '#150033',
+                '.34': '#170034',
+                '.35': '#180036',
+                '.36': '#190136',
+                '.37': '#1f013c',
+                '.38': '#22013e',
+                '.39': '#260041',
+                '.40': '#270142',
+                '.41': '#290243',
+                '.42': '#310046',
+                '.43': '#3a004c',
+                '.44': '#410052',
+                '.45': '#450055',
+                '.46': '#490058',
+                '.47': '#4d005a',
+                '.48': '#500058',
+                '.49': '#5d0060',
+                '.50': '#660064',
+                '.51': '#6e0068',
+                '.52': '#77016b',
+                '.53': '#81036f',
+                '.54': '#880570',
+                '.55': '#930973',
+                '.56': '#920b6f',
+                '.57': '#9d1979',
+                '.58': '#a71672',
+                '.59': '#ae1b71',
+                '.60': '#b51f6f',
+                '.61': '#bc256d',
+                '.62': '#c42b6b',
+                '.63': '#cb306b',
+                '.64': '#c63563',
+                '.65': '#d33e68',
+                '.66': '#da4668',
+                '.67': '#dc4b69',
+                '.68': '#df4f6d',
+                '.69': '#e65d6f',
+                '.70': '#ea626a',
+                '.71': '#ef696d',
+                '.72': '#f36f6d',
+                '.73': '#f4726e',
+                '.74': '#f6756f',
+                '.75': '#fa8373',
+                '.76': '#fd8c79',
+                '.77': '#fc8b79',
+                '.78': '#fd8c79',
+                '.79': '#fe9778',
+                '.80': '#fd9b79',
+                '.81': '#fd9f7c',
+                '.82': '#fd9b79',
+                '.83': '#fda57b',
+                '.84': '#fda97c',
+                '.85': '#fdab7d',
+                '.86': '#fdac7d',
+                '.88': '#fdae7e',
+                '.89': '#f5ad7d',
+                '.90': '#f2b286',
+                '.91': '#fdc39a',
+                '.92': '#f8c9a6',
+                '.93': '#f5cfb4',
+                '.94': '#f3d8c4',
+                '.95': '#f6eae0'
+            }
+        });
+
+        // tooltip
+        var wrapper = document.querySelector('.heatmap-wrap');
+        var tooltip = document.querySelector('.heatmap-tooltip');
+
+        function updateTooltip(x, y, value) {
+            // + 15 for distance to cursor
+            var transl = 'translate(' + (x + 15) + 'px, ' + (y + 15) + 'px)';
+            tooltip.style.webkitTransform = transl;
+            var coords = "<span class='heatmap-tooltip-coords'>" + Math.floor(xscale.invert(x)*30) + "," + Math.floor(yscale.invert(y)*30) + "</span>";
+            var kills = "<span class='heatmap-tooltip-kills'>" + (value === 0 ? "NO CHAMPION KILLS" : value === 1 ? "1 CHAMPION KILL" : numeral(value).format('0,0') + " CHAMPION KILLS") + "</span>";
+            tooltip.innerHTML = coords + "<br /><br />" + kills;
+        }
+
+        wrapper.onmousemove = function (ev) {
+            var x = ev.layerX;
+            var y = ev.layerY;
+            // getValueAt gives us the value for a point p(x/y)
+            var value = heatmapInstance.getValueAt({
+                x: x,
+                y: y
+            });
+
+            tooltip.style.display = 'block';
+            updateTooltip(x, y, value);
+        };
+
+        // hide tooltip on mouseout
+        wrapper.onmouseout = function () {
+            tooltip.style.display = 'none';
+        };
+
+        var points = [];
+        var max = 0;
+        var width = 1200;
+        var height = 1170;
+        var max = 1;
+        var domain = {
+            min: { x: -18, y: -90 },
+            max: { x: 500, y: 525 }
+        };
+
+        var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);
+        var yscale = d3.scale.linear().domain([domain.min.y, domain.max.y]).range([height, 0]);
+
+        $.getJSON("@Url.Content("~/Content/Data/snapshot.js")", function (data) {
+            $.each(data.heatmap[0].data, function (_, val) {
+                max = Math.max(max, val[2]);
+                points.push({
+                    x: xscale(val[0]),
+                    y: yscale(val[1]),
+                    value: val[2],
+                    radius: 10
+                });
+            });
+            var heatmapdata = {
+                max: max,
+                data: points
+            };
+            heatmapInstance.setData(heatmapdata);
+            $(".heatmap-loading").hide();
+        });
+    </script>
+}
