@@ -192,6 +192,7 @@
     <Content Include="Views\Home\Partials\_Heatmap.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Home\Partials\_ChampionStats.cshtml" />
+    <Content Include="Views\Home\Partials\_ChampionDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

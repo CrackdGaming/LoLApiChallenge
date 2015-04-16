@@ -13,6 +13,10 @@
 .container {
     max-width: 1230px;
 }
+.block {
+    width: 100px;
+    float: left;
+}
 
 .heatmap-wrap {
     position: relative;
