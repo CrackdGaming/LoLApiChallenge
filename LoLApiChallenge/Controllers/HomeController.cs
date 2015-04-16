@@ -207,6 +207,16 @@ namespace LoLApiChallenge.Controllers
             return champions;
         }
 
+        public JsonResult GetChampionData(int id)
+        {
+
+            return Json(
+                new
+                {
+                    data = RenderPartialViewToString("",null)
+                }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetImage(string name)
         {
             return File(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images\Factions\"+name + ".jpg", "image/jpeg");
