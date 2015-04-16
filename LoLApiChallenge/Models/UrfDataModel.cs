@@ -33,14 +33,17 @@ namespace LoLApiChallenge.Models
 
     public class ChampionData
     {
-        public byte[] Image { get; set; }
+        public string ImageUrl { get; set; }
         public string Name { get; set; }
+        public int TotalGames { get; set;}
+        public int TotalKills { get; set; }
+        public int TotalDeaths { get; set; }
+        public int TotalAssits { get; set; }
         public int Kills { get; set; }
         public int Deaths { get; set; }
         public int Assists { get; set; }
         public int TotalWins{ get; set; }
-        public int TimesPicked { get; set; }
-        public int MostDeaths { get; set; }
+        public int LargestCritStrike { get; set; }
         
     }
 }
