@@ -23,6 +23,12 @@ namespace LoLApiChallenge
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/heatmap").Include("~/Scripts/heatmap.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include("~/Scripts/d3.v3.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/numeral").Include("~/Scripts/numeral.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
