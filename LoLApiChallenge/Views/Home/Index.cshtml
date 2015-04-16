@@ -1,6 +1,14 @@
-﻿@model LoLApiChallenge.Models.UrfDataModel
+﻿@using System.ServiceModel.Dispatcher
+@model LoLApiChallenge.Models.UrfDataModel
 @{
     ViewBag.Title = "Home";
+}
+@foreach (var faction in Model.Factions)
+{
+
+    <img src="@Url.Action("GetImage", "Home", new { name = faction.Name })" />
+    <p>@faction.Name</p>
+    <p>@faction.Kills / @faction.Deaths / @faction.Assists</p>
 }
 
 @Html.Partial("Partials/Map")
