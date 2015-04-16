@@ -4,6 +4,7 @@ using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using LoLApiChallenge.Models;
 using Newtonsoft.Json;
@@ -26,6 +27,9 @@ namespace LoLApiChallenge.Controllers
         public int[] ShadowIsles = { 60, 28, 120, 30, 82, 412, 83};
         public int[] TheVoid = { 31, 38, 121, 96, 90};
         public int[] Zaun = { 53, 36, 27, 29, 6, 112, 19, 154};
+
+        public readonly string ApiKey = WebConfigurationManager.AppSettings["ApiKey"];
+
         private static RootObject _data;
         public RootObject Data {
             get

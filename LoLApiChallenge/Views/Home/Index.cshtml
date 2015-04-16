@@ -1,19 +1,33 @@
 ﻿@using System.ServiceModel.Dispatcher
 @model LoLApiChallenge.Models.UrfDataModel
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Api Challenge";
 }
-@foreach (var faction in Model.Factions)
-{
+<div class="row">
+    @foreach (var faction in Model.Factions)
+    {
 
-    <img src="@Url.Action("GetImage", "Home", new { name = faction.Name })" />
-    <p>@faction.Name</p>
-    <p>@faction.Kills / @faction.Deaths / @faction.Assists</p>
-}
-
+        <img src="@Url.Action("GetImage", "Home", new { name = faction.Name })" />
+        <p>@faction.Name</p>
+        <p>@faction.Kills / @faction.Deaths / @faction.Assists</p>
+    }
+</div>
 @Html.Partial("Partials/_Heatmap")
 
 <div class="row">
+    @foreach (var champ in Model.Champions)
+    {
+        <img src="@champ.ImageUrl"/>
+        <p>@champ.Name</p>
+        <p>Games Played: @champ.TotalGames</p>
+        <p>Average Kills: @champ.Kills</p>
+        <p>Average Deaths: @champ.Deaths</p>
+        <p>Average Assists: @champ.Assists</p>
+        <p>Largest Crit Strike: @champ.LargestCritStrike</p>
+        <p>Total Kills: @champ.TotalKills</p>
+        <p>Total Deaths: @champ.TotalDeaths</p>
+        <p>Total Assists: @champ.TotalAssits</p>
+    }
     @Html.Partial("Partials/_ChampionStats")
     @Html.Partial("Partials/_ChampionStats")
     @Html.Partial("Partials/_ChampionStats")
