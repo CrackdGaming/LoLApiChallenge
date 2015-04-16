@@ -11,12 +11,26 @@
     <p>@faction.Kills / @faction.Deaths / @faction.Assists</p>
 }
 
-@Html.Partial("Partials/Map")
+@Html.Partial("Partials/_Heatmap")
+
+<div class="row">
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+    @Html.Partial("Partials/_ChampionStats")
+</div>
 
 @section scripts {
     <script>
         var heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
+            maxOpacity: 0.8,
             gradient: {
                 '.30': '#180933',
                 '.31': '#1f113b',

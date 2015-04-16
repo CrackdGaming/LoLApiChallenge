@@ -60,6 +60,12 @@
     font-size: 18px;
 }
 
+.champion-stats-wrap {
+    text-align: center;
+    width: 20%;
+    margin-bottom: 50px;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
