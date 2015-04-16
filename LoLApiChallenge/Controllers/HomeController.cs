@@ -4,7 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using APIDataModels;
 using LoLApiChallenge.Models;
+using Microsoft.Ajax.Utilities;
+using Region = APIDataModels.Region;
 
 namespace LoLApiChallenge.Controllers
 {
@@ -174,8 +177,36 @@ namespace LoLApiChallenge.Controllers
             model.Factions.Add(facShurima);
             model.Factions.Add(facTheVoid);
             model.Factions = model.Factions.OrderByDescending(f => f.Kills).ToList();
+
+            model.Champions = GenerateChampionData();
             return View(model);
         }
+
+        public List<ChampionData> GenerateChampionData()
+        {
+            var champions = new List<ChampionData>();
+            foreach (var champ in Data.champions)
+            {
+                var api = new LoLApiGenerator(ApiKey);
+                var cData = api.GetChampionDetailById(Region.na, champ.championId);
+                champions.Add(new ChampionData
+                {
+                    Kills =champ.data.stat.kills.totalKills / champ.data.timesPicked,
+                    Deaths= champ.data.stat.kills.totalDeaths/ champ.data.timesPicked,
+                    Assists = champ.data.stat.kills.totalAssists / champ.data.timesPicked,
+                    TotalDeaths = champ.data.stat.kills.totalDeaths,
+                    TotalGames = champ.data.timesPicked,
+                    TotalKills = champ.data.stat.kills.totalKills,
+                    TotalAssits = champ.data.stat.kills.totalAssists,
+                    TotalWins = champ.data.totalWins,
+                    LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage,
+                    Name = cData.name,
+                    ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + cData.key + ".png"
+                });
+            }
+            return champions;
+        }
+
         public ActionResult GetImage(string name)
         {
             return File(AppDomain.CurrentDomain.BaseDirectory + @"\Content\Images\Factions\"+name + ".jpg", "image/jpeg");
