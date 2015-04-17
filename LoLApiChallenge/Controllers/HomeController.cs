@@ -199,9 +199,9 @@ namespace LoLApiChallenge.Controllers
                     TotalKills = champ.data.stat.kills.totalKills,
                     TotalAssits = champ.data.stat.kills.totalAssists,
                     TotalWins = champ.data.totalWins,
-                    LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage,
-                    Name = cData.name,
-                    ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + cData.key + ".png"
+                    LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage
+                    //Name = cData.name,
+                    //ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + cData.key + ".png"
                 });
             }
             return champions;

@@ -22,7 +22,7 @@
     position: relative;
     background-image: url(Images/11.jpg);
     width: 1200px;
-    height: 1170px;
+    height: 1160px;
 }
 
 .heatmap {
@@ -35,7 +35,7 @@
     background-image: url(Images/11_1.png);
     width: 1200px;
     height: 261px;
-    top: 909px;
+    top: 899px;
 }
 
 .heatmap-loading {

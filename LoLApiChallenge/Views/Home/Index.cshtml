@@ -18,14 +18,7 @@
 <div class="row">
     @foreach (var champ in Model.Champions)
     {
-        <a href="#" class="btn btn-lg btn-success"
-           data-toggle="modal"
-           data-target="#basicModal">
-            <div class="faction">
-                <img src="@champ.ImageUrl" />
-                <p>@champ.Name</p>
-            </div>
-        </a>
+        @Html.Partial("Partials/_ChampionStats", champ)
     }
 </div>
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -152,8 +145,8 @@
         var height = 1170;
         var max = 1;
         var domain = {
-            min: { x: -18, y: -90 },
-            max: { x: 500, y: 525 }
+            min: { x: -12, y: -88 },
+            max: { x: 498, y: 516 }
         };
 
         var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);
