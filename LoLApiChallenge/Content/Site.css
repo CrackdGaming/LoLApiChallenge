@@ -24,6 +24,11 @@ hr.style-two {
 
 .yellow {
     color: #ff9d00;
+    font-family: "Adobe Garamond Pro",Garamond,Baskerville,"Baskerville Old Face","Hoefler Text","Times New Roman",serif;
+}
+
+.white {
+    color: #ffffff;
 }
 
 .center {
@@ -50,19 +55,18 @@ hr.style-two {
 .faction-panel {
     display: none;
     color: #414141;
-    background: #000000;
-    border: 1px solid #a9a9a9;
+    background: #1c1c1e;
     position: absolute;
     top: 0;
-    left: 385px;
+    left: 355px;
     z-index: 99999;
-    width: 530px;
+    width: 480px;
     padding: 6px 8px;
     text-align: left;
 }
 
 .faction-panel-left {
-    left: -500px;
+    left: -430px;
 }
 
 .faction:hover + .faction-panel {
@@ -77,8 +81,6 @@ hr.style-two {
     text-align: center;
     margin-bottom: 50px;
     text-transform: uppercase;
-    color: #ffffff;
-    background-color: #000000;
     font-size: 13px;
 }
 
