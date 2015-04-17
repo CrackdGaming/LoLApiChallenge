@@ -29,11 +29,11 @@ namespace LoLApiChallenge
 
             bundles.Add(new ScriptBundle("~/bundles/numeral").Include("~/Scripts/numeral.min.js"));
 
-            bundles.Add(new LessBundle("~/Content/bootstrap").Include("~/Content/bootstrap/bootstrap.less"));
+            bundles.Add(new LessBundle("~/bundles/bootstrap").Include("~/Content/bootstrap/bootstrap.less"));
 
-            bundles.Add(new LessBundle("~/Content/less").Include("~/Content/main.less"));
+            bundles.Add(new LessBundle("~/bundles/less").Include("~/Content/main.less"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/bundles/css").Include("~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
