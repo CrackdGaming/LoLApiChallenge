@@ -22,6 +22,7 @@
                 <img src="@champ.ImageUrl" />
                 <p>@champ.Name</p>
             </div>
+        @Html.Partial("Partials/_ChampionStats", champ)
     }
 </div>
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -161,8 +162,8 @@
         var height = 1170;
         var max = 1;
         var domain = {
-            min: { x: -18, y: -90 },
-            max: { x: 500, y: 525 }
+            min: { x: -12, y: -88 },
+            max: { x: 498, y: 516 }
         };
 
         var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);

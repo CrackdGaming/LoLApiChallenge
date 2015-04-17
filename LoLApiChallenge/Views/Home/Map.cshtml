@@ -3,12 +3,13 @@
     ViewBag.Title = "Map";
 }
 
-@Html.Partial("Partials/Map")
+@Html.Partial("Partials/_Heatmap")
 
 @section scripts {
     <script>
         var heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
+            maxOpacity: 0.8,
             gradient: {
                 '.30': '#180933',
                 '.31': '#1f113b',
@@ -86,7 +87,7 @@
             // + 15 for distance to cursor
             var transl = 'translate(' + (x + 15) + 'px, ' + (y + 15) + 'px)';
             tooltip.style.webkitTransform = transl;
-            var coords = "<span class='heatmap-tooltip-coords'>" + Math.floor(xscale.invert(x)*30) + "," + Math.floor(yscale.invert(y)*30) + "</span>";
+            var coords = "<span class='heatmap-tooltip-coords'>" + Math.floor(xscale.invert(x) * 30) + "," + Math.floor(yscale.invert(y) * 30) + "</span>";
             var kills = "<span class='heatmap-tooltip-kills'>" + (value === 0 ? "NO CHAMPION KILLS" : value === 1 ? "1 CHAMPION KILL" : numeral(value).format('0,0') + " CHAMPION KILLS") + "</span>";
             tooltip.innerHTML = coords + "<br /><br />" + kills;
         }
@@ -115,20 +116,20 @@
         var height = 1170;
         var max = 1;
         var domain = {
-            min: { x: -18, y: -90 },
-            max: { x: 500, y: 525 }
+            min: { x: -12, y: -88 },
+            max: { x: 498, y: 516 }
         };
 
         var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);
         var yscale = d3.scale.linear().domain([domain.min.y, domain.max.y]).range([height, 0]);
 
         $.getJSON("@Url.Content("~/Content/Data/snapshot.js")", function (data) {
-            $.each(data.heatmap[1].data, function (_, val) {
-                max = Math.max(max, val.c);
+            $.each(data.heatmap[0].data, function (_, val) {
+                max = Math.max(max, val[2]);
                 points.push({
-                    x: xscale(val.x),
-                    y: yscale(val.y),
-                    value: val.c,
+                    x: xscale(val[0]),
+                    y: yscale(val[1]),
+                    value: val[2],
                     radius: 10
                 });
             });
@@ -139,5 +140,10 @@
             heatmapInstance.setData(heatmapdata);
             $(".heatmap-loading").hide();
         });
+        var options = {
+            "backdrop": "static",
+            "Show": "false"
+        }
+        $('#basicModal').modal(options);
     </script>
 }
