@@ -41,9 +41,9 @@ namespace LoLApiChallenge.Controllers
             {
                 Name = "Ionia"
             };
-            var facIndependant = new FactionData
+            var facIndependent = new FactionData
             {
-                Name = "Independant"
+                Name = "Independent"
             };
             var facMtTargon = new FactionData
             {
@@ -105,10 +105,10 @@ namespace LoLApiChallenge.Controllers
                     facIonia = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
                         champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facIonia);
                 }
-                if (Independant.Contains(champ.championId))
+                if (Independent.Contains(champ.championId))
                 {
-                    facIndependant = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facIndependant);
+                    facIndependent = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
+                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facIndependent);
                 }
                 if (MtTargon.Contains(champ.championId))
                 {
@@ -153,7 +153,7 @@ namespace LoLApiChallenge.Controllers
             facDemacia = AverageData(facDemacia);
             facFreljord = AverageData(facFreljord);
             facIonia = AverageData(facIonia);
-            facIndependant = AverageData(facIndependant);
+            facIndependent = AverageData(facIndependent);
             facMtTargon = AverageData(facMtTargon);
             facNoxus = AverageData(facNoxus);
             facPiltover = AverageData(facPiltover);
@@ -168,7 +168,7 @@ namespace LoLApiChallenge.Controllers
             model.Factions.Add(facBlackRose);
             model.Factions.Add(facDemacia);
             model.Factions.Add(facFreljord);
-            model.Factions.Add(facIndependant);
+            model.Factions.Add(facIndependent);
             model.Factions.Add(facIonia);
             model.Factions.Add(facMtTargon);
             model.Factions.Add(facNoxus);
