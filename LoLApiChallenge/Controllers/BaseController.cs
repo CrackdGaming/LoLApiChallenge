@@ -42,6 +42,21 @@ namespace LoLApiChallenge.Controllers
                 return _data;
             }
         }
+        private static Dictionary<string, ChampionKeys> _championKeys;
+        public Dictionary<string, ChampionKeys> ChampionKeys
+        {
+            get
+            {
+                if (_championKeys != null) return _championKeys;
+                using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"\Content\ChampionKeyNames.json"))
+                {
+                    string json = r.ReadToEnd();
+                    _championKeys = JsonConvert.DeserializeObject<Dictionary<string, ChampionKeys>>(json);
+                }
+                return _championKeys;
+            }
+        }
+
         public virtual string RenderPartialViewToString()
         {
             return RenderPartialViewToString(null, null);
