@@ -123,6 +123,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Champions.cs" />
     <Compile Include="Models\RootObject.cs" />
     <Compile Include="Models\UrfDataModel.cs" />
     <Compile Include="Models\ChampionStats.cs" />
@@ -242,6 +243,7 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\bootstrap-n-column.less" />
     <Content Include="Content\main.less" />
+    <Content Include="Content\ChampionKeyNames.json" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\d3.v3.min.js" />
     <Content Include="Scripts\heatmap.min.js" />
