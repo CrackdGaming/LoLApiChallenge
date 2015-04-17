@@ -188,12 +188,12 @@ namespace LoLApiChallenge.Controllers
             foreach (var champ in Data.champions)
             {
                 var key = ChampionKeys.FirstOrDefault(c => c.Value.id == champ.championId);
-                champions.Add(new ChampionData
+                var ch = new ChampionData
                 {
                     Id = champ.championId,
-                    Kills =champ.data.stat.kills.totalKills / champ.data.timesPicked,
-                    Deaths= champ.data.stat.kills.totalDeaths/ champ.data.timesPicked,
-                    Assists = champ.data.stat.kills.totalAssists / champ.data.timesPicked,
+                    Kills = champ.data.stat.kills.totalKills/champ.data.timesPicked,
+                    Deaths = champ.data.stat.kills.totalDeaths/champ.data.timesPicked,
+                    Assists = champ.data.stat.kills.totalAssists/champ.data.timesPicked,
                     TotalDeaths = champ.data.stat.kills.totalDeaths,
                     TotalGames = champ.data.timesPicked,
                     TotalKills = champ.data.stat.kills.totalKills,
@@ -202,20 +202,132 @@ namespace LoLApiChallenge.Controllers
                     LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage,
                     Name = key.Value.name,
                     ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
-                });
+                };
+                ch.Kda = (ch.Kills *2) + (ch.Assists *1.5) + (ch.Deaths *-0.5);
+                champions.Add(ch);
             }
-            return champions.OrderByDescending(c =>c.Kills).ToList();
+            return champions.OrderByDescending(c =>c.Kda).ToList();
         }
 
         public JsonResult GetChampionData(int id)
         {
+            var model = PopulateChampData(id);
+
+            return Json(
+                new
+                {
+                    data = RenderPartialViewToString("Partials/_ChampionDetails", model)
+                }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFactionData(string id)
+        {
+            var model = new FactionDetailsModel();
+            switch (id)
+            {
+                case "Bilgewater" :
+                    foreach (var i in Bilgewater)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Bandle City" :
+                    foreach (var i in BandleCity)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Black Rose":
+                    foreach (var i in BlackRose)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Demacia":
+                    foreach (var i in Demacia)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Freljord":
+                    foreach (var i in Freljord)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Ionia":
+                    foreach (var i in Ionia)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Independant":
+                    foreach (var i in Independent)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Mount Targon":
+                    foreach (var i in MtTargon)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Noxus":
+                    foreach (var i in Noxus)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Piltover":
+                    foreach (var i in Piltover)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Shurimas Desert":
+                    foreach (var i in Shurima)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Shadow Isles":
+                    foreach (var i in ShadowIsles)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "The Void":
+                    foreach (var i in TheVoid)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+                case "Zaun":
+                    foreach (var i in Zaun)
+                    {
+                        model.Champs.Add(PopulateChampData(i));
+                    }
+                    break;
+            }
+            return Json(
+                new
+                {
+                    data = RenderPartialViewToString("Partials/_FactionDetails", model)
+                }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ChampionData PopulateChampData(int id)
+        {
+            var model = new ChampionData();
+
             var champData = Data.champions.FirstOrDefault(c => c.championId == id);
             var key = ChampionKeys.FirstOrDefault(c => c.Value.id == id);
-            var model = new ChampionData
+            model = new ChampionData
             {
                 Id = champData.championId,
-                Kills =champData.data.stat.kills.totalKills / champData.data.timesPicked,
-                Deaths= champData.data.stat.kills.totalDeaths/ champData.data.timesPicked,
+                Kills = champData.data.stat.kills.totalKills / champData.data.timesPicked,
+                Deaths = champData.data.stat.kills.totalDeaths / champData.data.timesPicked,
                 Assists = champData.data.stat.kills.totalAssists / champData.data.timesPicked,
                 TotalDeaths = champData.data.stat.kills.totalDeaths,
                 TotalGames = champData.data.timesPicked,
@@ -226,12 +338,8 @@ namespace LoLApiChallenge.Controllers
                 Name = key.Value.name,
                 ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
             };
-
-            return Json(
-                new
-                {
-                    data = RenderPartialViewToString("Partials/_ChampionDetails", model)
-                }, JsonRequestBehavior.AllowGet);
+            model.Kda = (model.Kills * 2) + (model.Assists * 1.5) + (model.Deaths * -0.5);
+            return model;
         }
 
         public ActionResult GetImage(string name)

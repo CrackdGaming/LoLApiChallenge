@@ -1,0 +1,8 @@
+﻿@model LoLApiChallenge.Models.FactionDetailsModel
+
+<h3>@Model.Name</h3>
+@foreach (var champ in Model.Champs)
+{
+    <img src="@champ.ImageUrl"/>
+    <div>@champ.Name</div>
+}
