@@ -19,7 +19,7 @@ namespace LoLApiChallenge
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap/js").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
@@ -29,7 +29,7 @@ namespace LoLApiChallenge
 
             bundles.Add(new ScriptBundle("~/bundles/numeral").Include("~/Scripts/numeral.min.js"));
 
-            bundles.Add(new LessBundle("~/bundles/bootstrap").Include("~/Content/bootstrap/bootstrap.less"));
+            bundles.Add(new LessBundle("~/bundles/bootstrap/css").Include("~/Content/bootstrap/bootstrap.less"));
 
             bundles.Add(new LessBundle("~/bundles/less").Include("~/Content/main.less"));
 
