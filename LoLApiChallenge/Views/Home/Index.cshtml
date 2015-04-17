@@ -10,7 +10,7 @@
 @Html.Partial("Partials/_Heatmap")
 
 <div id="ChampionContainer">
-    
+
 </div>
 
 @section scripts {
@@ -19,8 +19,19 @@
             url: '@Url.Action("LoadChampions", "Home")',
             success: function (result) {
                 $('#ChampionContainer').html(result.data);
+                $('.champion-stats-wrap').hover(function () {
+                    $.ajax({
+                        url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
+                        success: function (result) {
+                            $('.champion-panel').html(result.data);
+                        }
+                    });
+                }, function () {
+
+                });
             }
         });
+
         $('.faction').hover(function () {
             $.ajax({
                 url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),
@@ -28,19 +39,10 @@
                     $('.faction-panel').html(result.data);
                 }
             });
-        }, function() {
-            
-        });
-        $('.champion-stats-wrap').hover(function () {
-            $.ajax({
-                url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
-                success: function (result) {
-                    $('.champion-panel').html(result.data);
-                }
-            });
         }, function () {
 
         });
+
         var heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
             maxOpacity: 0.8,
@@ -126,7 +128,7 @@
             tooltip.innerHTML = coords + "<br /><br />" + kills;
         }
 
-        wrapper.onmousemove = function(ev) {
+        wrapper.onmousemove = function (ev) {
             var x = ev.layerX;
             var y = ev.layerY;
             // getValueAt gives us the value for a point p(x/y)
@@ -139,7 +141,7 @@
         };
 
         // hide tooltip on mouseout
-        wrapper.onmouseout = function() {
+        wrapper.onmouseout = function () {
             tooltip.style.display = 'none';
         };
 
@@ -156,8 +158,8 @@
         var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);
         var yscale = d3.scale.linear().domain([domain.min.y, domain.max.y]).range([height, 0]);
 
-        $.getJSON("@Url.Content("~/Content/Data/heatmap.js")", function(data) {
-            $.each(data.heatmap[0].data, function(_, val) {
+        $.getJSON("@Url.Content("~/Content/Data/heatmap.js")", function (data) {
+            $.each(data.heatmap[0].data, function (_, val) {
                 max = Math.max(max, val[2]);
                 points.push({
                     x: xscale(val[0]),

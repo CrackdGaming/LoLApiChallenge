@@ -129,8 +129,6 @@ hr.style-two {
     text-transform: uppercase;
     color: #FFFFFF;
     font-size: 15px;
-    cursor: pointer; 
-    cursor: hand;
 }
 .champion-stats-wrap div {
     margin-bottom: 10px;
