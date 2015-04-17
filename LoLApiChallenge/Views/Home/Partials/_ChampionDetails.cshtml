@@ -1,15 +1,39 @@
 ﻿@model LoLApiChallenge.Models.ChampionData
 
 
-<div class="faction">
+<div class="ChampionCenter">
     <img src="@Model.ImageUrl" />
     <p>@Model.Name</p>
-    <p>Games Played: @Model.TotalGames</p>
-    <p>Average Kills: @Model.Kills</p>
-    <p>Average Deaths: @Model.Deaths</p>
-    <p>Average Assists: @Model.Assists</p>
-    <p>Largest Crit Strike: @Model.LargestCritStrike</p>
-    <p>Total Kills: @Model.TotalKills</p>
-    <p>Total Deaths: @Model.TotalDeaths</p>
-    <p>Total Assists: @Model.TotalAssits</p>
+    <div class="row">
+        <div class="col-lg-4">Games Played:</div>
+        <div class="col-lg-8">@Model.TotalGames</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Average Kills:</div>
+        <div class="col-lg-8">@Model.Kills</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Average Deaths:</div>
+        <div class="col-lg-8">@Model.Deaths</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Average Assists:</div>
+        <div class="col-lg-8">@Model.Assists</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Largest Crit Strike:</div>
+        <div class="col-lg-8">@Model.LargestCritStrike</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Total Kills:</div>
+        <div class="col-lg-8">@Model.TotalKills</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Total Deaths:</div>
+        <div class="col-lg-8">@Model.TotalDeaths</div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">Total Assists:</div>
+        <div class="col-lg-8">@Model.TotalAssits</div>
+    </div>
 </div>

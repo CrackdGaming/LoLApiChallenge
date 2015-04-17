@@ -8,8 +8,9 @@
     {
         <div class="faction">
             <img src="@Url.Action("GetImage", "Home", new { name = faction.Name })" />
-            <p>@faction.Name</p>
-            <p>@faction.Kills / @faction.Deaths / @faction.Assists</p>
+            <div>@faction.Name</div>
+            <div>KDA</div>
+            <div>@faction.Kills / @faction.Deaths / @faction.Assists</div>
         </div>
     }
 </div>
@@ -35,7 +36,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -43,6 +43,20 @@
 
 @section scripts {
     <script>
+        
+        $('.champion-stats-wrap').on("click", function () {
+            $.ajax({
+                url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
+                success: function (result) {
+                    $('#championModal').html(result.data);
+                    var options = {
+                        "backdrop": "static",
+                        "Show": "false"
+                    }
+                    $('#basicModal').modal(options);
+                }
+            });
+        });
         var heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
             maxOpacity: 0.8,
@@ -176,10 +190,5 @@
             heatmapInstance.setData(heatmapdata);
             $(".heatmap-loading").hide();
         });
-        var options = {
-            "backdrop": "static",
-            "Show": "false"
-        }
-        $('#basicModal').modal(options);
     </script>
 }
