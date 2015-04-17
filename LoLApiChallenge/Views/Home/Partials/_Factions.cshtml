@@ -9,13 +9,14 @@
                 <div class="faction" data-id="@item.v.Name">
                     <img src="@Url.Action("GetImage", "Home", new {name = @item.v.Name})"/>
                     <div>@item.v.Name</div>
+                    <div>Score: @item.v.Kda</div>
                     <div>Average KDA</div>
                     <div>@item.v.Kills.ToString("N0") / @item.v.Deaths.ToString("N0") / @item.v.Assists.ToString("N0")</div>
                 </div>
                 @{
                     var left = item.i%3 == 2 ? "faction-panel-left" : "";
                 }
-                <div class="faction-panel @left"></div>
+                <div class="faction-panel @left" data-id="@item.v.Name"></div>
             </div>
         }
     </div>
