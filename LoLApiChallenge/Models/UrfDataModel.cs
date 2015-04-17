@@ -13,6 +13,11 @@ namespace LoLApiChallenge.Models
             Factions = new List<FactionData>();
             Champions = new List<ChampionData>();
         }
+
+        public int TotalGamesPlayed { get; set; }
+        public double LongestGamePlayed { get; set; }
+        public double AverageTime { get; set; }
+        public double TotalTimePlayed { get; set; }
         public List<FactionData> Factions { get; set; }
         public RootObject FullData { get; set; }
         public List<ChampionData> Champions { get; set; }
