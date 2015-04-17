@@ -38,7 +38,7 @@
 
 <div class="container">
 <div class="row champion-stats-row">
-        @foreach (var item in Model.Champions.Select((v, i) => new {i, v}))
+    @foreach (var item in Model.Champions.Select((v, i) => new {i, v}))
     {
         <div class="col-xs-2 col-xs-offset-1">
             @Html.Partial("Partials/_ChampionStats", item.v)
@@ -58,7 +58,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <div class="modal-body" id="championModal">
+            <div class="modal-body" id="championModal" style="overflow: hidden">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -72,7 +72,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <div class="modal-body" id="factionModalBody">
+            <div class="modal-body" id="factionModalBody" style="overflow: hidden">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -83,11 +83,10 @@
 
 @section scripts {
     <script>
-        
-        $('.champion-stats-wrap').on("click", function () {
+        $('.champion-stats-wrap').on("click", function() {
             $.ajax({
                 url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
-                success: function (result) {
+                success: function(result) {
                     $('#championModal').html(result.data);
                     var options = {
                         "backdrop": "true",
@@ -97,10 +96,10 @@
                 }
             });
         });
-        $('.faction').on("click", function () {
+        $('.faction').on("click", function() {
             $.ajax({
                 url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),
-                success: function (result) {
+                success: function(result) {
                     $('#factionModalBody').html(result.data);
                     var options = {
                         "backdrop": "true",
@@ -190,12 +189,12 @@
             // + 15 for distance to cursor
             var transl = 'translate(' + (x + 15) + 'px, ' + (y + 15) + 'px)';
             tooltip.style.webkitTransform = transl;
-            var coords = "<span class='heatmap-tooltip-coords'>" + Math.floor(xscale.invert(x)*30) + "," + Math.floor(yscale.invert(y)*30) + "</span>";
+            var coords = "<span class='heatmap-tooltip-coords'>" + Math.floor(xscale.invert(x) * 30) + "," + Math.floor(yscale.invert(y) * 30) + "</span>";
             var kills = "<span class='heatmap-tooltip-kills'>" + (value === 0 ? "NO CHAMPION KILLS" : value === 1 ? "1 CHAMPION KILL" : numeral(value).format('0,0') + " CHAMPION KILLS") + "</span>";
             tooltip.innerHTML = coords + "<br /><br />" + kills;
         }
-
-        wrapper.onmousemove = function (ev) {
+        
+        wrapper.onmousemove = function(ev) {
             var x = ev.layerX;
             var y = ev.layerY;
             // getValueAt gives us the value for a point p(x/y)
@@ -203,13 +202,12 @@
                 x: x,
                 y: y
             });
-
             tooltip.style.display = 'block';
             updateTooltip(x, y, value);
         };
 
         // hide tooltip on mouseout
-        wrapper.onmouseout = function () {
+        wrapper.onmouseout = function() {
             tooltip.style.display = 'none';
         };
 
@@ -226,8 +224,8 @@
         var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);
         var yscale = d3.scale.linear().domain([domain.min.y, domain.max.y]).range([height, 0]);
 
-        $.getJSON("@Url.Content("~/Content/Data/snapshot.js")", function (data) {
-            $.each(data.heatmap[0].data, function (_, val) {
+        $.getJSON("@Url.Content("~/Content/Data/snapshot.js")", function(data) {
+            $.each(data.heatmap[0].data, function(_, val) {
                 max = Math.max(max, val[2]);
                 points.push({
                     x: xscale(val[0]),
