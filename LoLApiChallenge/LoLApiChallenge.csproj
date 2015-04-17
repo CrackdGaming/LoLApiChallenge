@@ -142,6 +142,7 @@
     <Content Include="Content\Images\Factions\Demacia.jpg" />
     <Content Include="Content\Images\Factions\Freljord.jpg" />
     <Content Include="Content\Images\Factions\GuardiansSea.jpg" />
+    <Content Include="Content\Images\Factions\Independent.jpg" />
     <Content Include="Content\Images\Factions\InstituteOfWar.jpg" />
     <Content Include="Content\Images\Factions\Ionia.jpg" />
     <Content Include="Content\Images\Factions\IronSolari.jpg" />
@@ -278,6 +279,7 @@
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Home\Partials\_ChampionStats.cshtml" />
     <Content Include="Views\Home\Partials\_ChampionDetails.cshtml" />
+    <Content Include="Views\Home\Partials\_Faction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

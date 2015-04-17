@@ -9,6 +9,22 @@
     float: left;
 }
 
+.factions-col {
+    width: 33.33333333%;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+.factions-col div {
+    margin-bottom: 10px;
+}
+
+.container-wide {
+    width: 1230px;
+}
+
 .heatmap-wrap {
     position: relative;
     background-image: url(Images/11.jpg);
@@ -55,14 +71,18 @@
     font-size: 18px;
 }
 
-.champion-stats-row {
-    margin: 0 20px 20px  0;
-}
-
 .champion-stats-wrap {
     text-align: center;
     margin-bottom: 50px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-size: 15px;
 }
+.champion-stats-wrap div {
+    margin-bottom: 10px;
+}
+
+
 .ChampionCenter {
     margin: 0 auto;
 }

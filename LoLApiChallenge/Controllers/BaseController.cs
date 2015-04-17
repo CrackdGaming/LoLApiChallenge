@@ -19,7 +19,7 @@ namespace LoLApiChallenge.Controllers
         public static int[] Demacia = { 114, 3, 86, 59, 10, 99, 78, 133, 102, 37, 44, 67, 5, 236 };
         public static int[] Freljord = { 34, 22, 79, 127, 20, 2, 113, 48, 23, 77, 106 };
         public static int[] Ionia = { 103, 84, 39, 24, 43, 85, 64, 11, 98, 37, 16, 134, 77, 110, 62, 5, 238 };
-        public static int[] Independant = { 266, 12, 1, 63, 9, 40, 54, 57, 267, 76, 56, 107, 13, 35, 72, 143 };
+        public static int[] Independent = { 266, 12, 1, 63, 9, 40, 54, 57, 267, 76, 56, 107, 13, 35, 72, 143 };
         public static int[] MtTargon = { 131, 89, 80 };
         public static int[] Noxus = { 69, 122, 119, 55, 7, 25, 92, 14, 50, 91, 6, 8 };
         public static int[] Piltover = { 51, 42, 81, 74, 126, 61, 254, 26 };
