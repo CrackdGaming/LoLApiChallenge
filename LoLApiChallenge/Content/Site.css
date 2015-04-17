@@ -136,6 +136,31 @@ hr.style-two {
     margin-bottom: 10px;
 }
 
+.champion-panel {
+    display: none;
+    color: #414141;
+    background: #f1f1f1;
+    border: 1px solid #a9a9a9;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    z-index: 99999;
+    width: 300px;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+.champion-panel-left {
+    left: -300px;
+}
+
+.champion-stats-wrap:hover + .champion-panel {
+    display: block;
+}
+
+.champion-panel:hover {
+    display: none;
+}
 
 .ChampionCenter {
     margin: 0 auto;

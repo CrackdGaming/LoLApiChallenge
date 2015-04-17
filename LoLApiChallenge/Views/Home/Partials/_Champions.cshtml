@@ -6,7 +6,19 @@
         @foreach (var item in Model.Champions.Select((v, i) => new { i, v }))
         {
             <div class="col-xs-2 col-xs-offset-1">
-                @Html.Partial("Partials/_ChampionStats", item.v)
+                <div class="champion-stats-wrap" data-id="@item.v.Id">
+                    <div>
+                        <img src="@item.v.ImageUrl"/>
+                    </div>
+                    <div>@item.v.Name</div>
+                    <div>Score: @item.v.Kda.ToString("N0")</div>
+                    <div>K/D/A</div>
+                    <div>@item.v.Kills.ToString("N0") / @item.v.Deaths.ToString("N0") / @item.v.Assists.ToString("N0")</div>
+                </div>
+                @{
+                    var left = item.i % 5 == 4 || item.i % 5 == 3 ? "champion-panel-left" : "";
+                }
+                <div class="champion-panel @left"></div>
             </div>
 
             if (item.i % 5 == 4)
