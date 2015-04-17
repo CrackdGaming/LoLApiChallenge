@@ -6,10 +6,10 @@
 <div class="row">
     @foreach (var faction in Model.Factions)
     {
-        <div class="faction">
+        <div class="faction" data-id="@faction.Name">
             <img src="@Url.Action("GetImage", "Home", new { name = faction.Name })" />
             <div>@faction.Name</div>
-            <div>KDA</div>
+            <div>K/D/A</div>
             <div>@faction.Kills / @faction.Deaths / @faction.Assists</div>
         </div>
     }
@@ -33,6 +33,17 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="factionModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="factionModalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts {
     <script>
@@ -47,6 +58,19 @@
                         "Show": "false"
                     }
                     $('#basicModal').modal(options);
+                }
+            });
+        });
+        $('.faction').on("click", function () {
+            $.ajax({
+                url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),
+                success: function (result) {
+                    $('#factionModalBody').html(result.data);
+                    var options = {
+                        "backdrop": "static",
+                        "Show": "false"
+                    }
+                    $('#factionModal').modal(options);
                 }
             });
         });
