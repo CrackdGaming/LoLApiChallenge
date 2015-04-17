@@ -8,8 +8,9 @@
     {
         <div class="faction">
             <img src="@Url.Action("GetImage", "Home", new { name = faction.Name })" />
-            <p>@faction.Name</p>
-            <p>@faction.Kills / @faction.Deaths / @faction.Assists</p>
+            <div>@faction.Name</div>
+            <div>KDA</div>
+            <div>@faction.Kills / @faction.Deaths / @faction.Assists</div>
         </div>
     }
 </div>
@@ -18,10 +19,6 @@
 <div class="row">
     @foreach (var champ in Model.Champions)
     {
-            <div class="faction champion" data-id="@champ.Id">
-                <img src="@champ.ImageUrl" />
-                <p>@champ.Name</p>
-            </div>
         @Html.Partial("Partials/_ChampionStats", champ)
     }
 </div>

@@ -204,7 +204,7 @@ namespace LoLApiChallenge.Controllers
                     ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
                 });
             }
-            return champions;
+            return champions.OrderByDescending(c =>c.Kills).ToList();
         }
 
         public JsonResult GetChampionData(int id)
