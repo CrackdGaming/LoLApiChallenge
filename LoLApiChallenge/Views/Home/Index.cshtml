@@ -122,15 +122,17 @@
         function updateTooltip(x, y, value) {
             // + 15 for distance to cursor
             var transl = 'translate(' + (x + 15) + 'px, ' + (y + 15) + 'px)';
+            tooltip.style.msTransform = transl;
             tooltip.style.webkitTransform = transl;
+            tooltip.style.transform = transl;
             var coords = "<span class='heatmap-tooltip-coords'>" + Math.floor(xscale.invert(x) * 30) + "," + Math.floor(yscale.invert(y) * 30) + "</span>";
             var kills = "<span class='heatmap-tooltip-kills'>" + (value === 0 ? "NO CHAMPION KILLS" : value === 1 ? "1 CHAMPION KILL" : numeral(value).format('0,0') + " CHAMPION KILLS") + "</span>";
             tooltip.innerHTML = coords + "<br /><br />" + kills;
         }
 
         wrapper.onmousemove = function (ev) {
-            var x = ev.layerX;
-            var y = ev.layerY;
+            var x = ev.offsetX;
+            var y = ev.offsetY;
             // getValueAt gives us the value for a point p(x/y)
             var value = heatmapInstance.getValueAt({
                 x: x,
