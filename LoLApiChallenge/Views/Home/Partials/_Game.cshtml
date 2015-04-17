@@ -1,0 +1,38 @@
+﻿@model LoLApiChallenge.Models.UrfDataModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-3">
+            <h1 class="yellow center">Total Games Played:</h1>
+        </div>
+        <div class="col-xs-10 col-xs-offset-3">
+            <h1 class="center" style="font-size: 55px;">@Model.TotalGamesPlayed.ToString("N0")</h1>
+        </div>
+        <div class="col-lg-16">
+            <hr class="style-two" />
+        </div>
+        <div class="col-xs-5 col-xs-offset-3">
+            <h2 class="yellow center">Longest Game:</h2>
+        </div>
+        <div class="col-xs-5">
+            <h2 class="yellow center">Average Game:</h2>
+        </div>
+        <div class="col-xs-5 col-xs-offset-3">
+            <h2 class="center">@Model.LongestGamePlayed.ToString("N0") mins</h2>
+        </div>
+        <div class="col-xs-5">
+            <h2 class="center">@Model.AverageTime.ToString("N0") mins</h2>
+        </div>
+        <div class="col-xs-10 col-xs-offset-3">
+            <h2 class="yellow center">Total Time Played:</h2>
+        </div>
+        <div class="col-xs-10 col-xs-offset-3">
+            <h2 class="center">@Model.TotalTimePlayed.ToString("N0") mins</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-16">
+            <img src="~/Content/Images/11_1.png" style="margin-top: -60px" />
+        </div>
+    </div>
+</div>
