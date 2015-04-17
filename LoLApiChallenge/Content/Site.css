@@ -34,10 +34,6 @@ hr.style-two {
     margin-bottom: -150px
 }
 
-.faction {
-    cursor: pointer; 
-    cursor: hand;
-}
 .factions-col {
     width: 33.33333333%;
     text-align: center;
@@ -58,7 +54,7 @@ hr.style-two {
     border: 1px solid #a9a9a9;
     position: absolute;
     top: 0;
-    left: 290px;
+    left: 385px;
     z-index: 99999;
     width: 530px;
     padding: 6px 8px;
