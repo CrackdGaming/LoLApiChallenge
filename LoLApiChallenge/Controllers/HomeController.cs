@@ -190,6 +190,7 @@ namespace LoLApiChallenge.Controllers
                 var key = ChampionKeys.FirstOrDefault(c => c.Value.id == champ.championId);
                 champions.Add(new ChampionData
                 {
+                    Id = champ.championId,
                     Kills =champ.data.stat.kills.totalKills / champ.data.timesPicked,
                     Deaths= champ.data.stat.kills.totalDeaths/ champ.data.timesPicked,
                     Assists = champ.data.stat.kills.totalAssists / champ.data.timesPicked,
@@ -208,11 +209,28 @@ namespace LoLApiChallenge.Controllers
 
         public JsonResult GetChampionData(int id)
         {
+            var champData = Data.champions.FirstOrDefault(c => c.championId == id);
+            var key = ChampionKeys.FirstOrDefault(c => c.Value.id == id);
+            var model = new ChampionData
+            {
+                Id = champData.championId,
+                Kills =champData.data.stat.kills.totalKills / champData.data.timesPicked,
+                Deaths= champData.data.stat.kills.totalDeaths/ champData.data.timesPicked,
+                Assists = champData.data.stat.kills.totalAssists / champData.data.timesPicked,
+                TotalDeaths = champData.data.stat.kills.totalDeaths,
+                TotalGames = champData.data.timesPicked,
+                TotalKills = champData.data.stat.kills.totalKills,
+                TotalAssits = champData.data.stat.kills.totalAssists,
+                TotalWins = champData.data.totalWins,
+                LargestCritStrike = champData.data.stat.damage.mostCriticalStrikeDamage,
+                Name = key.Value.name,
+                ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
+            };
 
             return Json(
                 new
                 {
-                    data = RenderPartialViewToString("",null)
+                    data = RenderPartialViewToString("Partials/_ChampionDetails", model)
                 }, JsonRequestBehavior.AllowGet);
         }
 

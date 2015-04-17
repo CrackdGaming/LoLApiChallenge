@@ -18,14 +18,10 @@
 <div class="row">
     @foreach (var champ in Model.Champions)
     {
-        <a href="#" class="btn btn-lg btn-success"
-           data-toggle="modal"
-           data-target="#basicModal">
-            <div class="faction">
+            <div class="faction champion" data-id="@champ.Id">
                 <img src="@champ.ImageUrl" />
                 <p>@champ.Name</p>
             </div>
-        </a>
     }
 </div>
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -35,7 +31,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -43,6 +38,20 @@
 
 @section scripts {
     <script>
+        
+        $('.champion').on( "click",function () {
+            $.ajax({
+                url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
+                success: function (result) {
+                    $('#championModal').html(result.data);
+                    var options = {
+                        "backdrop": "static",
+                        "Show": "false"
+                    }
+                    $('#basicModal').modal(options);
+                }
+            });
+        });
         var heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
             maxOpacity: 0.8,
@@ -176,10 +185,5 @@
             heatmapInstance.setData(heatmapdata);
             $(".heatmap-loading").hide();
         });
-        var options = {
-            "backdrop": "static",
-            "Show": "false"
-        }
-        $('#basicModal').modal(options);
     </script>
 }

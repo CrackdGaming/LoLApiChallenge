@@ -33,6 +33,7 @@ namespace LoLApiChallenge.Models
 
     public class ChampionData
     {
+        public int Id { get; set; }
         public string ImageUrl { get; set; }
         public string Name { get; set; }
         public int TotalGames { get; set;}
