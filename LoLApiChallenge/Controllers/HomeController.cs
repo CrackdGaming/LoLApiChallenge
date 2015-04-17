@@ -23,7 +23,6 @@ namespace LoLApiChallenge.Controllers
                 LongestGamePlayed = 1.0 * Data.game.mostMinutesPlayed / 60,
                 AverageTime = 1.0 *Data.game.totalMinutesPlayed /Data.game.numGames / 60,
                 TotalGamesPlayed = Data.game.numGames
-            
             };
             var facBilgewater = new FactionData
             {
@@ -184,7 +183,7 @@ namespace LoLApiChallenge.Controllers
             model.Factions.Add(facShadowIsles);
             model.Factions.Add(facShurima);
             model.Factions.Add(facTheVoid);
-            model.Factions = model.Factions.OrderByDescending(f => f.Kills).ToList();
+            model.Factions = model.Factions.OrderByDescending(f => f.Kda).ToList();
 
             model.Champions = GenerateChampionData();
             return View(model);
@@ -369,6 +368,7 @@ namespace LoLApiChallenge.Controllers
             faction.Kills = faction.TotalKills / faction.TotalGames;
             faction.Deaths = faction.TotalDeaths / faction.TotalGames;
             faction.Assists = faction.TotalAssists / faction.TotalGames;
+            faction.Kda = (faction.Kills * 2) + (faction.Assists * 1.5) + (faction.Deaths * -0.5);
             return faction;
         }
 

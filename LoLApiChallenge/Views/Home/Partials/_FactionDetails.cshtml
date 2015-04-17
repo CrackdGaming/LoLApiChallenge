@@ -3,6 +3,8 @@
 <h3>@Model.Name</h3>
 @foreach (var champ in Model.Champs)
 {
-    <img src="@champ.ImageUrl"/>
-    <div>@champ.Name</div>
+    <div class="faction-stats-wrap col-lg-8">
+        <img src="@champ.ImageUrl" />
+        <div>@champ.Name</div>
+    </div>
 }
