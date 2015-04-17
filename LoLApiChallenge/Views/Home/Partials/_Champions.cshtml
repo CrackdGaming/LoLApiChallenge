@@ -1,0 +1,18 @@
+﻿@model LoLApiChallenge.Models.UrfDataModel
+
+
+<div class="container">
+    <div class="row champion-stats-row">
+        @foreach (var item in Model.Champions.Select((v, i) => new { i, v }))
+        {
+            <div class="col-xs-2 col-xs-offset-1">
+                @Html.Partial("Partials/_ChampionStats", item.v)
+            </div>
+
+            if (item.i % 5 == 4)
+            {
+                <div class="col-xs-1">&nbsp;</div>
+            }
+        }
+    </div>
+</div>
