@@ -1,6 +1,8 @@
 ﻿@model LoLApiChallenge.Models.ChampionData
 
-<div class="champion-stats-wrap">
-    <div><img src="@Model.ImageUrl"/></div>
+<div class="champion-stats-wrap" data-id="@Model.Id">
+    <div><img src="@Model.ImageUrl" /></div>
     <div>@Model.Name</div>
+    <div>KDA</div>
+    <div>@Model.Kills / @Model.Deaths / @Model.Assists</div>
 </div>
