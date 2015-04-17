@@ -277,7 +277,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Partials\_Heatmap.cshtml" />
-    <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Home\Partials\_ChampionDetails.cshtml" />
     <Content Include="Views\Home\Partials\_FactionDetails.cshtml" />
     <Content Include="Views\Home\Partials\_Factions.cshtml" />

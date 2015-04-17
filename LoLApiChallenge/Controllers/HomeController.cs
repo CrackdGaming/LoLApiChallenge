@@ -159,10 +159,5 @@ namespace LoLApiChallenge.Controllers
             faction.Kda = (faction.Kills * 2) + (faction.Assists * 1.5) + (faction.Deaths * -0.5);
             return faction;
         }
-
-        public ActionResult Map()
-        {
-            return View();
-        }
     }
 }
