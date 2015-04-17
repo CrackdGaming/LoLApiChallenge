@@ -25,6 +25,7 @@ namespace LoLApiChallenge.Models
 
     public class FactionData
     {
+        public double Kda { get; set; }
         public Image Image { get; set; }
         public string Name { get; set; }
         public int TotalGames { get; set; }
