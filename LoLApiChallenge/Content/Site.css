@@ -8,7 +8,10 @@
     width: 100px;
     float: left;
 }
-
+.faction {
+    cursor: pointer; 
+    cursor: hand;
+}
 .factions-col {
     width: 33.33333333%;
     text-align: center;
@@ -77,6 +80,8 @@
     text-transform: uppercase;
     color: #FFFFFF;
     font-size: 15px;
+    cursor: pointer; 
+    cursor: hand;
 }
 .champion-stats-wrap div {
     margin-bottom: 10px;
