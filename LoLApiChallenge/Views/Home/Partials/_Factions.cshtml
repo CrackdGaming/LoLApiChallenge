@@ -6,7 +6,16 @@
         {
             var offset = (item.i % 3 == 1 || item.i % 3 == 2) ? "col-xs-offset-2" : "";
             <div class="col-xs-5 factions-col">
-                @Html.Partial("Partials/_Faction", item.v)
+                <div class="faction" data-id="@item.v.Name">
+                    <img src="@Url.Action("GetImage", "Home", new { name = @item.v.Name })" />
+                    <div>@item.v.Name</div>
+                    <div>Average KDA</div>
+                    <div>@item.v.Kills.ToString("N0") / @item.v.Deaths.ToString("N0") / @item.v.Assists.ToString("N0")</div>
+                </div>
+                @{
+            var left = item.i % 3 == 2 ? "faction-panel-left" : "";
+                }
+                <div class="faction-panel @left">some test data</div>
             </div>
         }
     </div>
