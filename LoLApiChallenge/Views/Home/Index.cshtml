@@ -36,6 +36,16 @@
 
 @section scripts {
     <script>
+        $('.faction').hover(function () {
+            $.ajax({
+                url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),
+                success: function (result) {
+                    $('.faction-panel').html(result.data);
+                }
+            });
+        }, function() {
+            
+        });
         $('.champion-stats-wrap').on("click", function() {
             $.ajax({
                 url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
