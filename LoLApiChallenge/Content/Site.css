@@ -4,15 +4,6 @@
     background-color: #000000;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.container {
-    max-width: 1230px;
-}
 .block {
     width: 100px;
     float: left;
@@ -64,9 +55,12 @@
     font-size: 18px;
 }
 
+.champion-stats-row {
+    margin: 0 20px 20px  0;
+}
+
 .champion-stats-wrap {
     text-align: center;
-    width: 20%;
     margin-bottom: 50px;
 }
 

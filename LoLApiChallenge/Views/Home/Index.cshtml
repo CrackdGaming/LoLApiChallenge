@@ -15,10 +15,17 @@
 </div>
 @Html.Partial("Partials/_Heatmap")
 
-<div class="row">
-    @foreach (var champ in Model.Champions)
+<div class="row champion-stats-row">
+    @foreach (var item in Model.Champions.Select((v,i) => new {i,v}))
     {
-        @Html.Partial("Partials/_ChampionStats", champ)
+        <div class="col-xs-2 col-xs-offset-1">
+            @Html.Partial("Partials/_ChampionStats", item.v)
+        </div>
+        
+        if (item.i % 5 == 4)
+        {
+            <div class="col-xs-1">&nbsp;</div>
+        }
     }
 </div>
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
