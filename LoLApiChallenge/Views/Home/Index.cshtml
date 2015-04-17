@@ -1,63 +1,19 @@
-﻿@using System.ServiceModel.Dispatcher
-@model LoLApiChallenge.Models.UrfDataModel
+﻿@model LoLApiChallenge.Models.UrfDataModel
 @{
     ViewBag.Title = "Api Challenge";
 }
-<div>
-    <div>
-        Total Games Played:
-        @Model.TotalGamesPlayed
-    </div>
-    <div>
-        Longest Game:
-        @Model.LongestGamePlayed mins
-    </div>
-    <div>
-        Average Game:
-        @Model.AverageTime mins
-    </div>
-    <div>
-        Total Time Played:
-        @Model.TotalTimePlayed mins
-    </div>
-</div>
 
-<div class="container">
-<div class="row">
-        @foreach (var item in Model.Factions.Select((v, i) => new { v, i }))
-    {
-            var offset = (item.i % 3 == 1 || item.i % 3 == 2) ? "col-xs-offset-2" : "";
-            <div class="col-xs-5 factions-col">
-                @Html.Partial("Partials/_Faction", item.v)
-        </div>
-    }
-</div>
-</div>
+@Html.Partial("Partials/_Game", Model)
+
+@Html.Partial("Partials/_Factions", Model)
 
 @Html.Partial("Partials/_Heatmap")
 
-<div class="container">
-<div class="row champion-stats-row">
-    @foreach (var item in Model.Champions.Select((v, i) => new {i, v}))
-    {
-        <div class="col-xs-2 col-xs-offset-1">
-            @Html.Partial("Partials/_ChampionStats", item.v)
-        </div>
-        
-            if (item.i%5 == 4)
-        {
-            <div class="col-xs-1">&nbsp;</div>
-        }
-    }
-</div>
-</div>
+@Html.Partial("Partials/_Champions", Model)
 
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
             <div class="modal-body" id="championModal" style="overflow: hidden">
             </div>
             <div class="modal-footer">
@@ -69,9 +25,6 @@
 <div class="modal fade" id="factionModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
             <div class="modal-body" id="factionModalBody" style="overflow: hidden">
             </div>
             <div class="modal-footer">
@@ -193,7 +146,7 @@
             var kills = "<span class='heatmap-tooltip-kills'>" + (value === 0 ? "NO CHAMPION KILLS" : value === 1 ? "1 CHAMPION KILL" : numeral(value).format('0,0') + " CHAMPION KILLS") + "</span>";
             tooltip.innerHTML = coords + "<br /><br />" + kills;
         }
-        
+
         wrapper.onmousemove = function(ev) {
             var x = ev.layerX;
             var y = ev.layerY;
