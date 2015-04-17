@@ -16,7 +16,15 @@ namespace LoLApiChallenge.Controllers
     {
         public ActionResult Index()
         {
-            var model = new UrfDataModel{FullData = Data};
+            var model = new UrfDataModel
+            {
+                FullData = Data,
+                TotalTimePlayed = 1.0 * Data.game.totalMinutesPlayed / 60,
+                LongestGamePlayed = 1.0 * Data.game.mostMinutesPlayed / 60,
+                AverageTime = 1.0 *Data.game.totalMinutesPlayed /Data.game.numGames / 60,
+                TotalGamesPlayed = Data.game.numGames
+            
+            };
             var facBilgewater = new FactionData
             {
                 Name = "Bilgewater"
@@ -261,7 +269,7 @@ namespace LoLApiChallenge.Controllers
                         model.Champs.Add(PopulateChampData(i));
                     }
                     break;
-                case "Independant":
+                case "Independent":
                     foreach (var i in Independent)
                     {
                         model.Champs.Add(PopulateChampData(i));
