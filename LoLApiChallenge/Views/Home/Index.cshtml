@@ -9,10 +9,18 @@
 
 @Html.Partial("Partials/_Heatmap")
 
-@Html.Partial("Partials/_Champions", Model)
+<div id="ChampionContainer">
+    
+</div>
 
 @section scripts {
     <script>
+        $.ajax({
+            url: '@Url.Action("LoadChampions", "Home")',
+            success: function (result) {
+                $('#ChampionContainer').html(result.data);
+            }
+        });
         $('.faction').hover(function () {
             $.ajax({
                 url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),
