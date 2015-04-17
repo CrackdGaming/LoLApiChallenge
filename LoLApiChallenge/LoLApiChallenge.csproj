@@ -133,7 +133,7 @@
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\11.jpg" />
-    <Content Include="Content\Images\11_1.png" />
+    <Content Include="Content\Images\divider.png" />
     <Content Include="Content\Images\Factions\Bandle City.jpg" />
     <Content Include="Content\Images\Factions\Bilgewater.jpg" />
     <Content Include="Content\Images\Factions\Black Rose.jpg" />
@@ -282,6 +282,7 @@
     <Content Include="Views\Home\Partials\_Factions.cshtml" />
     <Content Include="Views\Home\Partials\_Champions.cshtml" />
     <Content Include="Views\Home\Partials\_Game.cshtml" />
+    <Content Include="Views\Home\Partials\_Divider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
