@@ -8,6 +8,7 @@ using APIDataModels;
 using APIDataModels.Champion;
 using LoLApiChallenge.Models;
 using Microsoft.Ajax.Utilities;
+using WebGrease.Css.Extensions;
 using Region = APIDataModels.Region;
 
 namespace LoLApiChallenge.Controllers
@@ -24,165 +25,25 @@ namespace LoLApiChallenge.Controllers
                 AverageTime = 1.0 *Data.game.totalMinutesPlayed /Data.game.numGames / 60,
                 TotalGamesPlayed = Data.game.numGames
             };
-            var facBilgewater = new FactionData
+
+            foreach (string factionName in Factions.Keys)
             {
-                Name = "Bilgewater"
-            };
-            var facBandleCity = new FactionData
-            {
-                Name = "Bandle City"
-            };
-            var facBlackRose = new FactionData
-            {
-                Name = "Black Rose"
-            };
-            var facDemacia = new FactionData
-            {
-                Name = "Demacia"
-            };
-            var facFreljord = new FactionData
-            {
-                Name = "Freljord"
-            };
-            var facIonia = new FactionData
-            {
-                Name = "Ionia"
-            };
-            var facIndependent = new FactionData
-            {
-                Name = "Independent"
-            };
-            var facMtTargon = new FactionData
-            {
-                Name = "Mount Targon"
-            };
-            var facNoxus = new FactionData
-            {
-                Name = "Noxus"
-            };
-            var facPiltover = new FactionData
-            {
-                Name = "Piltover"
-            };
-            var facShurima = new FactionData
-            {
-                Name = "Shurimas Desert"
-            };
-            var facShadowIsles = new FactionData
-            {
-                Name = "Shadow Isles"
-            };
-            var facTheVoid = new FactionData
-            {
-                Name = "The Void"
-            };
-            var facZaun = new FactionData
-            {
-                Name = "Zaun"
-            };
-            foreach (var champ in Data.champions)
-            {
-                if (Bilgewater.Contains(champ.championId) )
+                FactionData factionData = new FactionData();
+                factionData.Name = factionName;
+
+                foreach (Champion champion in Data.champions)
                 {
-                    facBilgewater = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facBilgewater);
+                    if (Factions[factionName].Contains(champion.championId))
+                    {
+                        factionData = AddTotals(champion.data.timesPicked, champion.data.stat.kills.totalKills,
+                        champion.data.stat.kills.totalAssists, champion.data.stat.kills.totalDeaths, factionData);
+                    }
                 }
-                if (BandleCity.Contains(champ.championId))
-                {
-                    facBandleCity = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facBandleCity);
-                } 
-                if (BlackRose.Contains(champ.championId))
-                {
-                    facBlackRose = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facBlackRose);
-                }
-                if (Demacia.Contains(champ.championId))
-                {
-                    facDemacia = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facDemacia);
-                }
-                if (Freljord.Contains(champ.championId))
-                {
-                    facFreljord = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facFreljord);
-                }
-                if (Ionia.Contains(champ.championId))
-                {
-                    facIonia = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facIonia);
-                }
-                if (Independent.Contains(champ.championId))
-                {
-                    facIndependent = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facIndependent);
-                }
-                if (MtTargon.Contains(champ.championId))
-                {
-                    facMtTargon = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facMtTargon);
-                }
-                if (Noxus.Contains(champ.championId))
-                {
-                    facNoxus = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facNoxus);
-                }
-                if (Piltover.Contains(champ.championId))
-                {
-                    facPiltover = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facPiltover);
-                }
-                if (Shurima.Contains(champ.championId))
-                {
-                    facShurima = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facShurima);
-                }
-                if (ShadowIsles.Contains(champ.championId))
-                {
-                    facShadowIsles = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facShadowIsles);
-                }
-                if (TheVoid.Contains(champ.championId))
-                {
-                    facTheVoid = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facTheVoid);
-                }
-                if (Zaun.Contains(champ.championId))
-                {
-                    facZaun = AddTotals(champ.data.timesPicked, champ.data.stat.kills.totalKills,
-                        champ.data.stat.kills.totalAssists, champ.data.stat.kills.totalDeaths, facZaun);
-                }
+
+                factionData = AverageData(factionData);
+                model.Factions.Add(factionData);
             }
 
-            facBilgewater = AverageData(facBilgewater);
-            facBandleCity = AverageData(facBandleCity);
-            facBlackRose = AverageData(facBlackRose);
-            facDemacia = AverageData(facDemacia);
-            facFreljord = AverageData(facFreljord);
-            facIonia = AverageData(facIonia);
-            facIndependent = AverageData(facIndependent);
-            facMtTargon = AverageData(facMtTargon);
-            facNoxus = AverageData(facNoxus);
-            facPiltover = AverageData(facPiltover);
-            facShurima = AverageData(facShurima);
-            facShadowIsles = AverageData(facShadowIsles);
-            facTheVoid = AverageData(facTheVoid);
-            facZaun = AverageData(facZaun);
-
-            model.Factions.Add(facZaun);
-            model.Factions.Add(facBilgewater);
-            model.Factions.Add(facBandleCity);
-            model.Factions.Add(facBlackRose);
-            model.Factions.Add(facDemacia);
-            model.Factions.Add(facFreljord);
-            model.Factions.Add(facIndependent);
-            model.Factions.Add(facIonia);
-            model.Factions.Add(facMtTargon);
-            model.Factions.Add(facNoxus);
-            model.Factions.Add(facPiltover);
-            model.Factions.Add(facShadowIsles);
-            model.Factions.Add(facShurima);
-            model.Factions.Add(facTheVoid);
             model.Factions = model.Factions.OrderByDescending(f => f.Kda).ToList();
 
             model.Champions = GenerateChampionData();
@@ -230,93 +91,9 @@ namespace LoLApiChallenge.Controllers
         public JsonResult GetFactionData(string id)
         {
             var model = new FactionDetailsModel();
-            switch (id)
-            {
-                case "Bilgewater" :
-                    foreach (var i in Bilgewater)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Bandle City" :
-                    foreach (var i in BandleCity)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Black Rose":
-                    foreach (var i in BlackRose)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Demacia":
-                    foreach (var i in Demacia)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Freljord":
-                    foreach (var i in Freljord)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Ionia":
-                    foreach (var i in Ionia)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Independent":
-                    foreach (var i in Independent)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Mount Targon":
-                    foreach (var i in MtTargon)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Noxus":
-                    foreach (var i in Noxus)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Piltover":
-                    foreach (var i in Piltover)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Shurimas Desert":
-                    foreach (var i in Shurima)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Shadow Isles":
-                    foreach (var i in ShadowIsles)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "The Void":
-                    foreach (var i in TheVoid)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-                case "Zaun":
-                    foreach (var i in Zaun)
-                    {
-                        model.Champs.Add(PopulateChampData(i));
-                    }
-                    break;
-            }
+
+            Factions[id].ForEach(i => model.Champs.Add(PopulateChampData(i)));
+
             return Json(
                 new
                 {

@@ -13,20 +13,23 @@ namespace LoLApiChallenge.Controllers
 {
     public class BaseController : Controller
     {
-        public static int[] Bilgewater = { 105, 41, 104, 21, 111, 4 };
-        public static int[] BandleCity = { 32, 42, 74, 85, 117, 78, 68, 17, 18, 45, 115 };
-        public static int[] BlackRose = { 7, 50, 60, 8 };
-        public static int[] Demacia = { 114, 3, 86, 59, 10, 99, 78, 133, 102, 37, 44, 67, 5, 236 };
-        public static int[] Freljord = { 34, 22, 79, 127, 20, 2, 113, 48, 23, 77, 106 };
-        public static int[] Ionia = { 103, 84, 39, 24, 43, 85, 64, 11, 98, 37, 16, 134, 77, 110, 62, 5, 238 };
-        public static int[] Independent = { 266, 12, 1, 63, 9, 40, 54, 57, 267, 76, 56, 107, 13, 35, 72, 143 };
-        public static int[] MtTargon = { 131, 89, 80 };
-        public static int[] Noxus = { 69, 122, 119, 55, 7, 25, 92, 14, 50, 91, 6, 8 };
-        public static int[] Piltover = { 51, 42, 81, 74, 126, 61, 254, 26 };
-        public static int[] Shurima = { 69, 75, 33, 58, 15, 101 };
-        public static int[] ShadowIsles = { 60, 28, 120, 30, 82, 412, 83 };
-        public static int[] TheVoid = { 31, 38, 121, 96, 90 };
-        public static int[] Zaun = { 53, 36, 27, 29, 6, 112, 19, 154 };
+        public static Dictionary<String, IList<int>> Factions = new Dictionary<string, IList<int>>
+        {
+            {"Bilgewater", new[] {105, 41, 104, 21, 111, 4}},
+            {"Bandle City", new[] { 32, 42, 74, 85, 117, 78, 68, 17, 18, 45, 115 }},
+            {"Black Rose", new[] { 7, 50, 60, 8 }},
+            {"Demacia", new[] { 114, 3, 86, 59, 10, 99, 78, 133, 102, 37, 44, 67, 5, 236 }},
+            {"Freljord", new[] { 34, 22, 79, 127, 20, 2, 113, 48, 23, 77, 106 }},
+            {"Ionia", new[] { 103, 84, 39, 24, 43, 85, 64, 11, 98, 37, 16, 134, 77, 110, 62, 5, 238 }},
+            {"Independent", new[] { 266, 12, 1, 63, 9, 40, 54, 57, 267, 76, 56, 107, 13, 35, 72, 143 }},
+            {"Mount Targon", new[] { 131, 89, 80 }},
+            {"Noxus", new[] { 69, 122, 119, 55, 7, 25, 92, 14, 50, 91, 6, 8 }},
+            {"Piltover", new[] { 51, 42, 81, 74, 126, 61, 254, 26 }},
+            {"Shurimas Desert", new[] { 69, 75, 33, 58, 15, 101 }},
+            {"Shadow Isles", new[] { 31, 38, 121, 96, 90 }},
+            {"The Void", new[] { 53, 36, 27, 29, 6, 112, 19, 154 }},
+            {"Zaun", new []{ 53, 36, 27, 29, 6, 112, 19, 154 }}
+        };
         public readonly string ApiKey = WebConfigurationManager.AppSettings["ApiKey"];
 
         private static RootObject _data;
