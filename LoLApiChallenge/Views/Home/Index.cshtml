@@ -54,31 +54,15 @@
         }, function() {
             
         });
-        $('.champion-stats-wrap').on("click", function() {
+        $('.champion-stats-wrap').hover(function () {
             $.ajax({
                 url: '@Url.Action("GetChampionData", "Home")/' + $(this).attr("data-id"),
-                success: function(result) {
-                    $('#championModal').html(result.data);
-                    var options = {
-                        "backdrop": "true",
-                        "Show": "false"
-                    }
-                    $('#basicModal').modal(options);
+                success: function (result) {
+                    $('.champion-panel').html(result.data);
                 }
             });
-        });
-        $('.faction').on("click", function() {
-            $.ajax({
-                url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),
-                success: function(result) {
-                    $('#factionModalBody').html(result.data);
-                    var options = {
-                        "backdrop": "true",
-                        "Show": "false"
-                    }
-                    $('#factionModal').modal(options);
-                }
-            });
+        }, function () {
+
         });
         var heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
