@@ -79,7 +79,7 @@ hr.style-two {
 
 .heatmap-wrap {
     position: relative;
-    background-image: url(Images/11.jpg);
+    background-image: url(/Content/Images/11.jpg);
     width: 1200px;
     height: 1160px;
 }
@@ -91,7 +91,7 @@ hr.style-two {
 
 .heatmap-bottom {
     position: absolute;
-    background-image: url(Images/11_1.png);
+    background-image: url(/Content/Images/11_1.png);
     width: 1200px;
     height: 261px;
     top: 899px;
