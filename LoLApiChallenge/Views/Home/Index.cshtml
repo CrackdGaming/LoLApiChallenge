@@ -3,6 +3,25 @@
 @{
     ViewBag.Title = "Api Challenge";
 }
+<div>
+    <div>
+        Total Games Played:
+        @Model.TotalGamesPlayed
+    </div>
+    <div>
+        Longest Game:
+        @Model.LongestGamePlayed mins
+    </div>
+    <div>
+        Average Game:
+        @Model.AverageTime mins
+    </div>
+    <div>
+        Total Time Played:
+        @Model.TotalTimePlayed mins
+    </div>
+</div>
+
 <div class="container">
 <div class="row">
         @foreach (var item in Model.Factions.Select((v, i) => new { v, i }))
