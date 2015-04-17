@@ -172,7 +172,7 @@
         var xscale = d3.scale.linear().domain([domain.min.x, domain.max.x]).range([0, width]);
         var yscale = d3.scale.linear().domain([domain.min.y, domain.max.y]).range([height, 0]);
 
-        $.getJSON("@Url.Content("~/Content/Data/snapshot.js")", function(data) {
+        $.getJSON("@Url.Content("~/Content/Data/heatmap.js")", function(data) {
             $.each(data.heatmap[0].data, function(_, val) {
                 max = Math.max(max, val[2]);
                 points.push({
