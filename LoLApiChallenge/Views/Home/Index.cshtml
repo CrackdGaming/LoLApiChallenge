@@ -131,8 +131,10 @@
         }
 
         wrapper.onmousemove = function (ev) {
-            var x = ev.offsetX;
-            var y = ev.offsetY;
+            var target = ev.target || ev.srcElement;
+            var rect = target.getBoundingClientRect();
+            var x = ev.clientX - rect.left;
+            var y = ev.clientY - rect.top;
             // getValueAt gives us the value for a point p(x/y)
             var value = heatmapInstance.getValueAt({
                 x: x,
