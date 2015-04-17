@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using APIDataModels;
+using APIDataModels.Champion;
 using LoLApiChallenge.Models;
 using Microsoft.Ajax.Utilities;
 using Region = APIDataModels.Region;
@@ -165,7 +166,6 @@ namespace LoLApiChallenge.Controllers
             model.Factions.Add(facBilgewater);
             model.Factions.Add(facBandleCity);
             model.Factions.Add(facBlackRose);
-            model.Factions.Add(facBandleCity);
             model.Factions.Add(facDemacia);
             model.Factions.Add(facFreljord);
             model.Factions.Add(facIndependant);
@@ -187,8 +187,7 @@ namespace LoLApiChallenge.Controllers
             var champions = new List<ChampionData>();
             foreach (var champ in Data.champions)
             {
-                var api = new LoLApiGenerator(ApiKey);
-                var cData = api.GetChampionDetailById(Region.na, champ.championId);
+                var key = ChampionKeys.FirstOrDefault(c => c.Value.id == champ.championId);
                 champions.Add(new ChampionData
                 {
                     Kills =champ.data.stat.kills.totalKills / champ.data.timesPicked,
@@ -199,9 +198,9 @@ namespace LoLApiChallenge.Controllers
                     TotalKills = champ.data.stat.kills.totalKills,
                     TotalAssits = champ.data.stat.kills.totalAssists,
                     TotalWins = champ.data.totalWins,
-                    LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage
-                    //Name = cData.name,
-                    //ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + cData.key + ".png"
+                    LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage,
+                    Name = key.Value.name,
+                    ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
                 });
             }
             return champions;
