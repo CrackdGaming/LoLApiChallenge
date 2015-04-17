@@ -45,9 +45,36 @@ hr.style-two {
     font-size: 18px;
     margin-bottom: 30px;
     text-transform: uppercase;
+    position: relative;
 }
 .factions-col div {
     margin-bottom: 10px;
+}
+
+.faction-panel {
+    display: none;
+    color: #414141;
+    background: #f1f1f1;
+    border: 1px solid #a9a9a9;
+    position: absolute;
+    top: 0;
+    left: 290px;
+    z-index: 99999;
+    width: 530px;
+    padding: 6px 8px;
+    text-align: left;
+}
+
+.faction-panel-left {
+    left: -500px;
+}
+
+.faction:hover + .faction-panel {
+    display: block;
+}
+
+.faction-panel:hover {
+    display: none;
 }
 
 .container-wide {
