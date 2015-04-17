@@ -8,7 +8,7 @@
             <div class="col-xs-5 factions-col">
                 <div class="faction" data-id="@item.v.Name">
                     <img src="@Url.Action("GetImage", "Home", new {name = @item.v.Name})"/>
-                    <h2>@item.v.Name</h2>
+                    <h2 class="yellow">@item.v.Name</h2>
                     <div>Score: @item.v.Kda</div>
                     <div>Average KDA</div>
                     <div>@item.v.Kills.ToString("N0") / @item.v.Deaths.ToString("N0") / @item.v.Assists.ToString("N0")</div>
