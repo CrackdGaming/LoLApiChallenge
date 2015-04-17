@@ -3,7 +3,7 @@
 <div class="champion-stats-wrap" data-id="@Model.Id">
     <div><img src="@Model.ImageUrl" /></div>
     <div>@Model.Name</div>
-    <div>Score: @Model.Kda</div>
+    <div>Score: @Model.Kda.ToString("N0")</div>
     <div>K/D/A</div>
-    <div>@Model.Kills / @Model.Deaths / @Model.Assists</div>
+    <div>@Model.Kills.ToString("N0") / @Model.Deaths.ToString("N0") / @Model.Assists.ToString("N0")</div>
 </div>

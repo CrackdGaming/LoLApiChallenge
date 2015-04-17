@@ -6,34 +6,34 @@
     <p>@Model.Name</p>
     <div class="row">
         <div class="col-lg-4">Games Played:</div>
-        <div class="col-lg-8">@Model.TotalGames</div>
+        <div class="col-lg-8">@Model.TotalGames.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Average Kills:</div>
-        <div class="col-lg-8">@Model.Kills</div>
+        <div class="col-lg-8">@Model.Kills.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Average Deaths:</div>
-        <div class="col-lg-8">@Model.Deaths</div>
+        <div class="col-lg-8">@Model.Deaths.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Average Assists:</div>
-        <div class="col-lg-8">@Model.Assists</div>
+        <div class="col-lg-8">@Model.Assists.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Largest Crit Strike:</div>
-        <div class="col-lg-8">@Model.LargestCritStrike</div>
+        <div class="col-lg-8">@Model.LargestCritStrike.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Total Kills:</div>
-        <div class="col-lg-8">@Model.TotalKills</div>
+        <div class="col-lg-8">@Model.TotalKills.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Total Deaths:</div>
-        <div class="col-lg-8">@Model.TotalDeaths</div>
+        <div class="col-lg-8">@Model.TotalDeaths.ToString("N0")</div>
     </div>
     <div class="row">
         <div class="col-lg-4">Total Assists:</div>
-        <div class="col-lg-8">@Model.TotalAssits</div>
+        <div class="col-lg-8">@Model.TotalAssits.ToString("N0")</div>
     </div>
 </div>

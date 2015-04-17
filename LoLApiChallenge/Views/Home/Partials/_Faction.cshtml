@@ -5,5 +5,5 @@
     <img src="@Url.Action("GetImage", "Home", new { name = Model.Name })" />
     <div>@Model.Name</div>
     <div>Average KDA</div>
-    <div>@Model.Kills / @Model.Deaths / @Model.Assists</div>
+    <div>@Model.Kills.ToString("N0") / @Model.Deaths.ToString("N0") / @Model.Assists.ToString("N0")</div>
 </div>
