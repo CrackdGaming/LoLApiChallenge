@@ -9,7 +9,9 @@
 
 @Html.Partial("Partials/_Heatmap")
 
-@Html.Partial("Partials/_Champions", Model)
+<div id="ChampionContainer">
+    
+</div>
 
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -36,6 +38,12 @@
 
 @section scripts {
     <script>
+        $.ajax({
+            url: '@Url.Action("LoadChampions", "Home")',
+            success: function (result) {
+                $('#ChampionContainer').html(result.data);
+            }
+        });
         $('.faction').hover(function () {
             $.ajax({
                 url: '@Url.Action("GetFactionData", "Home")/' + $(this).attr("data-id"),

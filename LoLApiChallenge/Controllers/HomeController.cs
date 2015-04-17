@@ -185,7 +185,6 @@ namespace LoLApiChallenge.Controllers
             model.Factions.Add(facTheVoid);
             model.Factions = model.Factions.OrderByDescending(f => f.Kda).ToList();
 
-            model.Champions = GenerateChampionData();
             return View(model);
         }
 
@@ -323,6 +322,18 @@ namespace LoLApiChallenge.Controllers
                     data = RenderPartialViewToString("Partials/_FactionDetails", model)
                 }, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult LoadChampions()
+        {
+            var model = new UrfDataModel {Champions = GenerateChampionData()};
+
+            return Json(
+                new
+                {
+                    data = RenderPartialViewToString("Partials/_Champions", model)
+                }, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ChampionData PopulateChampData(int id)
         {
