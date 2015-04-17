@@ -36,6 +36,9 @@
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
             <div class="modal-body" id="championModal">
             </div>
             <div class="modal-footer">
@@ -47,6 +50,9 @@
 <div class="modal fade" id="factionModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
             <div class="modal-body" id="factionModalBody">
             </div>
             <div class="modal-footer">
@@ -65,7 +71,7 @@
                 success: function (result) {
                     $('#championModal').html(result.data);
                     var options = {
-                        "backdrop": "static",
+                        "backdrop": "true",
                         "Show": "false"
                     }
                     $('#basicModal').modal(options);
@@ -78,7 +84,7 @@
                 success: function (result) {
                     $('#factionModalBody').html(result.data);
                     var options = {
-                        "backdrop": "static",
+                        "backdrop": "true",
                         "Show": "false"
                     }
                     $('#factionModal').modal(options);
