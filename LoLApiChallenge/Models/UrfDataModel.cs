@@ -51,6 +51,8 @@ namespace LoLApiChallenge.Models
         public int Assists { get; set; }
         public int TotalWins{ get; set; }
         public int LargestCritStrike { get; set; }
+        public int HealingDone { get; set; }
+        public int LargestHeal { get; set; }
         
     }
 }

@@ -67,6 +67,7 @@ namespace LoLApiChallenge.Controllers
                     TotalAssits = champ.data.stat.kills.totalAssists,
                     TotalWins = champ.data.totalWins,
                     LargestCritStrike = champ.data.stat.damage.mostCriticalStrikeDamage,
+                    HealingDone = champ.data.stat.damage.heal.totalHealing,
                     Name = key.Value.name,
                     ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
                 };
@@ -130,6 +131,7 @@ namespace LoLApiChallenge.Controllers
                 TotalAssits = champData.data.stat.kills.totalAssists,
                 TotalWins = champData.data.totalWins,
                 LargestCritStrike = champData.data.stat.damage.mostCriticalStrikeDamage,
+                HealingDone = champData.data.stat.damage.heal.totalHealing,
                 Name = key.Value.name,
                 ImageUrl = "http://ddragon.leagueoflegends.com/cdn/5.7.2/img/champion/" + key.Value.key + ".png",
             };
