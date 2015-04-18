@@ -1,2 +1,2 @@
 # LoLApiChallenge
-API Challenge. Presentation and crawler. You can find the analysis engine here: https://github.com/CrackdGaming/lawl-challenge-analysis
+API Challenge. Presentation and crawler. The analysis data this presentation layer uses was generated with another application that was built specifically for this API challenge. You may find it here: https://github.com/CrackdGaming/lawl-challenge-analysis
